@@ -37,6 +37,8 @@ Formative Study Prefabs_BurstDebugInformation_DoNotShip/
 Formative Study Prefabs_BurstDebugInformation_DoNotShip/**
 
 .DS_Store
+.vscode/
+.vscode/**
 *.json
 
 *.userprefs
