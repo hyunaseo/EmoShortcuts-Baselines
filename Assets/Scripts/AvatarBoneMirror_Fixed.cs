@@ -8,7 +8,7 @@ namespace ReadyPlayerMe.MetaMovement
     /// <summary>
     /// Manages the mirroring of bones for an avatar, allowing for synchronized movement between source and mirrored bones.
     /// </summary>
-    public class AvatarBoneMirror_Fixed : MonoBehaviour
+    public class AvatarBoneMirror : MonoBehaviour
     {
         [System.Serializable]
         public class MirroredBonePair
@@ -96,8 +96,19 @@ namespace ReadyPlayerMe.MetaMovement
 
             foreach (var childTransform in childTransforms)
             {
-                var mirroredTransform =
-                    mirrorArmature.transform.FindChildRecursive(childTransform.name); // gameObject = MirroredAvatar
+                Transform mirroredTransform = null;
+
+                if(childTransform.name == "Armature"){
+                    mirroredTransform =
+                        gameObject.transform.FindChildRecursive(childTransform.name); // gameObject = MirroredAvatar
+                    Debug.Log($"HYUNA: GameObject name: {gameObject.name}");
+                }
+
+                else{
+                    mirroredTransform =
+                        gameObject.transform.Find("Armature").transform.FindChildRecursive(childTransform.name);
+                }
+
                 if (mirroredTransform != null)
                 {
                     bonePairList.Add(new MirroredBonePair
@@ -107,7 +118,7 @@ namespace ReadyPlayerMe.MetaMovement
                         Name = childTransform.name
                     });
                     
-                    Debug.Log($"Bone Pair: Source = {childTransform.name}, Mirrored = {mirroredTransform.name}");
+                    // Debug.Log($"Bone Pair: Source = {childTransform.name}, Mirrored = {mirroredTransform.name}");
                 }
                 else
                 {
