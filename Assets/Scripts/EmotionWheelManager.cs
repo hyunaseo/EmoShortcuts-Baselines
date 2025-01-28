@@ -13,6 +13,7 @@ public class EmotionWheelManager : MonoBehaviour
     [Header("Radial Menu Configuration")]
     public UltimateRadialMenu radialMenu;
     public List<UltimateRadialButtonInfo> buttonInfos = new List<UltimateRadialButtonInfo>();
+    private UltimateRadialButtonInfo angerButtonInfo = null;
     
     [Header("Emotion Colors")]
     private Dictionary<string, string> emotionColors = new Dictionary<string, string>()
@@ -54,6 +55,7 @@ public class EmotionWheelManager : MonoBehaviour
         foreach (var buttonInfo in buttonInfos)
         {
             radialMenu.RegisterButton(ToggleEmotionState, buttonInfo);
+            if(angerButtonInfo == null) angerButtonInfo = buttonInfo;
         }
 
         SetRadialButtonColor();
@@ -91,7 +93,61 @@ public class EmotionWheelManager : MonoBehaviour
             Debug.LogError("Animator component not found on the GameObject!");
             return;
         }
+
+        // TEST CODE 
+        // StartCoroutine(CallTuronOnButtonAfterDelay(10f));
+        // StartCoroutine(CallTuronOffButtonAfterDelay(20f));
     }
+
+    // TEST CODE 
+    /* 
+    IEnumerator CallTuronOnButtonAfterDelay(float delay)
+    {
+        float elapsedTime = 0f;
+        while (elapsedTime < delay)
+        {
+            yield return new WaitForSeconds(1f);
+            elapsedTime += 1f;
+            Debug.Log($"Elapsed Time: {elapsedTime} seconds");
+        }
+
+        TurnOnButton();
+    }
+
+    void TurnOnButton()
+    {
+        string tempKey = "anger";
+        Debug.Log("Turn on Anger Animation");
+        
+        ResetAllEmotions();
+        emotionStates[tempKey] = true;
+
+        emotionAnimations.TryGetValue(tempKey, out currentAnimation);
+        TrackingToEmotion(tempKey, currentAnimation);
+    }
+
+    IEnumerator CallTuronOffButtonAfterDelay(float delay)
+    {
+        float elapsedTime = 0f;
+        while (elapsedTime < delay)
+        {
+            yield return new WaitForSeconds(1f);
+            elapsedTime += 1f;
+            Debug.Log($"Elapsed Time: {elapsedTime} seconds");
+        }
+
+        TurnOffButton();
+    }
+
+    void TurnOffButton(){
+        string tempKey = "anger";
+        Debug.Log("Turn off Anger Animation");
+
+        Debug.Log($"ToggleEmotionState: CASE #3: {tempKey} is turned off.");
+        ResetAllEmotions();
+        EmotionToTracking(tempKey);
+    }
+    */
 
     void ToggleEmotionState(string key)
     {
