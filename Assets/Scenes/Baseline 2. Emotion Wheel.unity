@@ -6355,6 +6355,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7076356165442314885, guid: e97995fa33f88624f881e16422daa982, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7076356165442314886, guid: e97995fa33f88624f881e16422daa982, type: 3}
       propertyPath: m_Name
       value: MirroredAvatar
@@ -6370,7 +6374,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1216238040}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1216238043}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6130694ff15849846ad0d8a80154f56e, type: 3}
   m_Name: 
@@ -7611,9 +7615,7 @@ MonoBehaviour:
   SadAnimationClip: {fileID: 7400000, guid: 185132d8e49ae46b098ec17925056769, type: 2}
   SurpriseAnimationClip: {fileID: 7400000, guid: 377eff261cf0748d78ce8d9230ad09a5, type: 2}
   NeutralAnimationClip: {fileID: 7400000, guid: c83116e92a4b24b78891cbb1dd876092, type: 2}
-  mirroredAvatar: {fileID: 1216238043}
-  OriginalAvatarFace: {fileID: 363407951}
-  OriginalAvatarBody: {fileID: 1163613065}
+  MirroredAvatar: {fileID: 1216238043}
 --- !u!4 &1426711279
 Transform:
   m_ObjectHideFlags: 0

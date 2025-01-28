@@ -1,9 +1,12 @@
 using System.Collections;
+using System.Collections.Generic;
+
 using UnityEngine.Playables;
 using UnityEngine.Animations;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
+using ReadyPlayerMe.MetaMovement;
 
 public class EmotionWheelManager : MonoBehaviour
 {
@@ -39,9 +42,8 @@ public class EmotionWheelManager : MonoBehaviour
     private Dictionary<string, bool> emotionStates = new Dictionary<string, bool>();
 
     [Header("Avatar GameObjects")]
-    public GameObject mirroredAvatar;
-    public GameObject OriginalAvatarFace;
-    public GameObject OriginalAvatarBody;
+    public GameObject MirroredAvatar;
+    private AvatarBoneMirror avatarBoneMirror;
 
     [Header("Animation System")]
     private Animator animator;
@@ -72,10 +74,11 @@ public class EmotionWheelManager : MonoBehaviour
             { "neutral", NeutralAnimationClip }
         };
 
-        if (mirroredAvatar != null)
+        if (MirroredAvatar != null)
         {
-            animator = mirroredAvatar.GetComponent<Animator>();
-            // mirroredAvatar.SetActive(false);
+            animator = MirroredAvatar.GetComponent<Animator>();
+            avatarBoneMirror = MirroredAvatar.GetComponent<AvatarBoneMirror>();
+            avatarBoneMirror.enabled = true;
         }
         else
         {
@@ -137,9 +140,9 @@ public class EmotionWheelManager : MonoBehaviour
             }
         }
 
-        if (mirroredAvatar != null)
+        if (MirroredAvatar != null)
         {
-            animator = mirroredAvatar.GetComponent<Animator>();
+            animator = MirroredAvatar.GetComponent<Animator>();
             // mirroredAvatar.SetActive(false);
         }
         else
@@ -202,6 +205,7 @@ public class EmotionWheelManager : MonoBehaviour
         var animationPlayable = AnimationClipPlayable.Create(playableGraph, newClip);
 
         playableOutput.SetSourcePlayable(animationPlayable);
+        avatarBoneMirror.enabled = false;
         playableGraph.Play();
     }
 
@@ -275,5 +279,6 @@ public class EmotionWheelManager : MonoBehaviour
     void EmotionToTracking(string key){
         Debug.Log($"EmotionToTracking: CASE #3: Turn off {key}'s animation.");
         playableGraph.Destroy();
+        avatarBoneMirror.enabled = true;
     }
 }
