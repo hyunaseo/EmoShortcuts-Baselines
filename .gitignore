@@ -33,6 +33,12 @@ Assets/*
 Preliminary1_BurstDebugInformation_DoNotShip/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
+Formative Study Prefabs_BurstDebugInformation_DoNotShip/
+Formative Study Prefabs_BurstDebugInformation_DoNotShip/**
+
+.DS_Store
+*.json
+
 *.userprefs
 
 # Mono auto generated files
