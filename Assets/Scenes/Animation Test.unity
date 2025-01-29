@@ -4883,6 +4883,119 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1725609655}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1144695222
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1986722936103690300, guid: dd042bb7a7e67464c8a82b2c0a32c07c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 4504391235026854836, guid: dd042bb7a7e67464c8a82b2c0a32c07c, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 4504391235026854836, guid: dd042bb7a7e67464c8a82b2c0a32c07c, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 4563516835585250313, guid: dd042bb7a7e67464c8a82b2c0a32c07c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563516835585250313, guid: dd042bb7a7e67464c8a82b2c0a32c07c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.223
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563516835585250313, guid: dd042bb7a7e67464c8a82b2c0a32c07c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563516835585250313, guid: dd042bb7a7e67464c8a82b2c0a32c07c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7010574
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563516835585250313, guid: dd042bb7a7e67464c8a82b2c0a32c07c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.09229593
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563516835585250313, guid: dd042bb7a7e67464c8a82b2c0a32c07c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7010574
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563516835585250313, guid: dd042bb7a7e67464c8a82b2c0a32c07c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.09229593
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563516835585250313, guid: dd042bb7a7e67464c8a82b2c0a32c07c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563516835585250313, guid: dd042bb7a7e67464c8a82b2c0a32c07c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563516835585250313, guid: dd042bb7a7e67464c8a82b2c0a32c07c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563516835585250315, guid: dd042bb7a7e67464c8a82b2c0a32c07c, type: 3}
+      propertyPath: m_Name
+      value: AnimationMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 6566046895887177145, guid: dd042bb7a7e67464c8a82b2c0a32c07c, type: 3}
+      propertyPath: _whenRelease.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1144695224}
+    - target: {fileID: 6566046895887177145, guid: dd042bb7a7e67464c8a82b2c0a32c07c, type: 3}
+      propertyPath: _whenRelease.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: Oculus.Movement.UI.CustomAnimToggleTest, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7026069999455447086, guid: dd042bb7a7e67464c8a82b2c0a32c07c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4563516835585250315, guid: dd042bb7a7e67464c8a82b2c0a32c07c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1144695224}
+    - targetCorrespondingSourceObject: {fileID: 4854433169845440955, guid: dd042bb7a7e67464c8a82b2c0a32c07c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+  m_SourcePrefab: {fileID: 100100000, guid: dd042bb7a7e67464c8a82b2c0a32c07c, type: 3}
+--- !u!1 &1144695223 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4563516835585250315, guid: dd042bb7a7e67464c8a82b2c0a32c07c, type: 3}
+  m_PrefabInstance: {fileID: 1144695222}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1144695224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1144695223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4b89e91588f747e5a8c87d62fab0331, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animClip: {fileID: -203655887218126122, guid: 240510be9aff67c4c82bd2ec6500a06d, type: 3}
+  _customMask: {fileID: 31900000, guid: 8ee8315844de04b5da54dda9804aff5b, type: 2}
+  _retargetingConstraints: []
+  _animators: []
+  _customAnimEnabled: 0
+  _worldText: {fileID: 1435999242}
+  _animParamName: Anger
+  animTest: {fileID: 1505338285}
+  IsInitialProcessed: 0
 --- !u!1 &1153145719
 GameObject:
   m_ObjectHideFlags: 0
@@ -6191,6 +6304,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 262652255}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1435999242 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4504391235026854836, guid: dd042bb7a7e67464c8a82b2c0a32c07c, type: 3}
+  m_PrefabInstance: {fileID: 1144695222}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1444121534
 GameObject:
   m_ObjectHideFlags: 0
@@ -6488,6 +6612,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1505338284}
   - component: {fileID: 1505338283}
+  - component: {fileID: 1505338285}
   m_Layer: 0
   m_Name: AvatarLoadChecker
   m_TagString: Untagged
@@ -6502,7 +6627,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1505338282}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd2be4a07f69841fd8f98abe2bf981d9, type: 3}
   m_Name: 
@@ -6524,6 +6649,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1505338285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1505338282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 953bdc60c7ad34757b25847cdeff8564, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementPrefabLoader: {fileID: 1089494787}
+  IsAvatarLoaded: 0
+  MyAvatar: {fileID: 0}
+  animatorController: {fileID: 9100000, guid: dd0371b0d44434b1a93dc188a3894c20, type: 2}
+  IsAnimControllerLoaded: 0
+  retargetingConstraint: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!1 &1511257789
 GameObject:
   m_ObjectHideFlags: 0
@@ -11216,3 +11360,4 @@ SceneRoots:
   - {fileID: 1833784276}
   - {fileID: 23275530}
   - {fileID: 1505338284}
+  - {fileID: 1144695222}
