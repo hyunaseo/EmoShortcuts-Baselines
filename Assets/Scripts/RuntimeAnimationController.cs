@@ -6,19 +6,21 @@ using UnityEngine.Assertions;
 
 namespace Oculus.Movement.UI
 {
-    public class RuntimeAnimationToggle : MonoBehaviour
+    public class RuntimeAnimationController : MonoBehaviour
     {
         [SerializeField] private AvatarMask _customMask; // Mask to apply.
+
+        public RuntimeAvatarLoadChecker runtimeAvatarLoadChecker;
+
+        
         [SerializeField] private RetargetingAnimationConstraint[] _retargetingConstraints; // Retargeting constraints to fix based on animation state.
         [SerializeField] private Animator[] _animators; // Animators to control.
         [SerializeField] private bool _customAnimEnabled = false; // True if animation is enabled, false is not.
         [SerializeField] private string _animParamName = "Wave"; // Animator parameter name.
 
-
-        private RuntimeAvatarLoadChecker runtimeAvatarLoadChecker;
         private GameObject myAvatar; 
 
-        private bool IsInitialProcessed = false;
+        public bool IsInitialProcessed = false;
 
         private RetargetingAnimationConstraint myRetargetingAnimationConstraint = null;
         private Animator myAnimator = null;

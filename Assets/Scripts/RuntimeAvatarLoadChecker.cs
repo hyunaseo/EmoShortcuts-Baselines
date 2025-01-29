@@ -4,16 +4,20 @@ using UnityEngine;
 using Oculus.Movement.AnimationRigging;
 using ReadyPlayerMe.MetaMovement.Runtime;
 
-public class AnimationTest : MonoBehaviour
+public class RuntimeAvatarLoadChecker : MonoBehaviour
 {
+    // Movement Prefab Loader and Runtime Animator Controller should be assigned before start
     public MovementPrefabLoader movementPrefabLoader; 
-    public bool IsAvatarLoaded = false;
-    public GameObject MyAvatar = null;
     public RuntimeAnimatorController animatorController;  
 
-    public bool IsAnimControllerLoaded = false;
-    public RetargetingAnimationConstraint retargetingConstraint = null;
-    public Animator animator = null;
+
+    // MyAvatar, RetargetingAnimationConstraint, Animator will be referred in Runtime Animation Toggle class 
+    [HideInInspector] public GameObject loadedAvatar = null;
+    [HideInInspector] public RetargetingAnimationConstraint loadedRetargetingAnimationConstraint = null;
+    [HideInInspector] public Animator loadedAnimator = null;
+
+    private bool IsAvatarLoaded = false;    
+    private bool IsComponentAssigned = false;
     
     void Start()
     {
@@ -29,23 +33,25 @@ public class AnimationTest : MonoBehaviour
 
     void Update(){
         if (IsAvatarLoaded){
-            if(!IsAnimControllerLoaded){
-                animator = MyAvatar.GetComponent<Animator>();
-                if (animator != null)
+            if(!IsComponentAssigned){
+                loadedAnimator = loadedAvatar.GetComponent<Animator>();
+                if (loadedAnimator != null)
                 {
-                    animator.runtimeAnimatorController = animatorController;
-                    Debug.Log("Animator Controller is assigned to MyAvatar.");
+                    loadedAnimator.runtimeAnimatorController = animatorController;
+                    Debug.Log("RuntimeAvatarLoadChecker: animator is assigned to MyAvatar.");
 
                     var allConstraints = Resources.FindObjectsOfTypeAll<RetargetingAnimationConstraint>();
                     foreach (var constraint in allConstraints)
                     {
                         if (constraint.gameObject.name == "RetargetingConstraint")
                         {
-                            retargetingConstraint = constraint;
+                            loadedRetargetingAnimationConstraint = constraint;
                             break;
                         }
                     } 
-                    IsAnimControllerLoaded = true;
+                    Debug.Log("RuntimeAvatarLoadChecker: retargeting animation constraint is assigned to MyAvatar.");
+
+                    IsComponentAssigned = true;
                 }
                 else{
                     Debug.LogWarning("MyAvatar doesn't have animator component.");
@@ -56,8 +62,7 @@ public class AnimationTest : MonoBehaviour
 
     private void OnAvatarLoaded(GameObject loadedAvatar)
     {
-        Debug.Log($"My avatar is loaded: {loadedAvatar.name}");
         IsAvatarLoaded = true;
-        MyAvatar = loadedAvatar;
+        this.loadedAvatar = loadedAvatar;
     }
 }
