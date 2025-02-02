@@ -72,7 +72,26 @@ public class EmotionWheelManager_SubMenu : MonoBehaviour
 
     }
 
-    void UpdateAnimation(){
+    public void UpdateEmotionType(int id){
+
+        // Select this button exclusively on the radial menu.
+        Emotions[id].buttonInfo.SelectButton(true);
+
+        // Clear the sub menu.
+        submenu.ClearMenu();
+
+        // Loop through all the intensity options.
+        for( int i = 0; i < Intensities.Length; i++ )
+        {
+            // Store the id of this option into the button info.
+            Intensities[i].subButtonInfo.id = i;
+            Intensities[i].subButtonInfo.name = Intensities[i].name;
+            Intensities[i].subButtonInfo.key = Intensities[i].name;
+            submenu.RegisterButton(UpdateIntensity, Intensities[i].buttonInfo);
+        }
+    }
+
+    public void UpdateIntensity(int id){
 
     }
 
@@ -97,7 +116,7 @@ public class EmotionWheelManager_SubMenu : MonoBehaviour
             {
                 if (textValue.Contains(emotion.name.ToLower()))
                 {
-                    Debug.Log($"Hyuna: {emotion.name}'s ColorCode is {emotion.colorCode}.");
+                    // Debug.Log($"Hyuna: {emotion.name}'s ColorCode is {emotion.colorCode}.");
                     ColorUtility.TryParseHtmlString(emotion.colorCode, out newColor);
                     break; 
                 }
