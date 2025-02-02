@@ -12,9 +12,33 @@ public class RaycastMenuInteractor : MonoBehaviour
     private void Update ()
     {
         // If any of the components are unassigned, warn the user and return.
-        if( radialMenu == null || leftFingerTip == null || leftFingerBase == null || rightFingerTip == null || rightFingerBase == null)
+        if( radialMenu == null)
         {
-            Debug.LogError( "" );
+            Debug.LogError( "raial menu is null" );
+            return;
+        }
+
+        if(leftFingerTip == null)
+        {
+            Debug.LogError( "leftFingerTip is null" );
+            return;
+        }
+
+        if(leftFingerBase == null)
+        {
+            Debug.LogError( "leftFingerBase is null" );
+            return;
+        }
+
+        if(rightFingerBase == null)
+        {
+            Debug.LogError( "rightFingerBase is null" );
+            return;
+        }
+
+        if(rightFingerTip == null)
+        {
+            Debug.LogError( "rightFingerTip is null" );
             return;
         }
 
