@@ -22,6 +22,8 @@ Assets/*
 !Assets/Scenes/**
 !Assets/Editor/
 !Assets/Editor/**
+!Assets/AnimationClips/
+!Assets/AnimationClips/**
 
 # User-specific files
 *.glb
