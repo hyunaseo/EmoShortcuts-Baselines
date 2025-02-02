@@ -12,11 +12,11 @@ namespace Oculus.Movement.UI
 
         public RuntimeAvatarLoadChecker runtimeAvatarLoadChecker;
 
-        
+
         [SerializeField] private RetargetingAnimationConstraint[] _retargetingConstraints; // Retargeting constraints to fix based on animation state.
         [SerializeField] private Animator[] _animators; // Animators to control.
-        [SerializeField] private bool _customAnimEnabled = false; // True if animation is enabled, false is not.
-        [SerializeField] private string _animParamName = "Wave"; // Animator parameter name.
+        [SerializeField] public bool _customAnimEnabled = false; // True if animation is enabled, false is not.
+        [SerializeField] public string _animParamName = "Wave"; // Animator parameter name.
 
         private GameObject myAvatar; 
 
@@ -68,12 +68,14 @@ namespace Oculus.Movement.UI
 
         public void SwapAnimState()
         {
+            Debug.Log("Hyuna: RuntimeAnimationController SwapAnimState.");
             _customAnimEnabled = !_customAnimEnabled;
             EnforceAnimState();
         }
 
         private void EnforceAnimState()
         {
+            Debug.Log($"Hyuna: RuntimeAnimationController animParamName: {_animParamName} and _customAnimEnabled: {_customAnimEnabled}");
             foreach (var retargetConstraint in _retargetingConstraints)
             {
                 retargetConstraint.data.AvatarMaskComp =

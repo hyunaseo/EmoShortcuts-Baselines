@@ -8,7 +8,7 @@ public class RuntimeAvatarLoadChecker : MonoBehaviour
 {
     // Movement Prefab Loader and Runtime Animator Controller should be assigned before start
     public MovementPrefabLoader movementPrefabLoader; 
-    public RuntimeAnimatorController animatorController;  
+    // public RuntimeAnimatorController animatorController;  
 
 
     // MyAvatar, RetargetingAnimationConstraint, Animator will be referred in Runtime Animation Toggle class 
@@ -31,34 +31,34 @@ public class RuntimeAvatarLoadChecker : MonoBehaviour
         }
     }
 
-    void Update(){
-        if (IsAvatarLoaded){
-            if(!IsComponentAssigned){
-                loadedAnimator = loadedAvatar.GetComponent<Animator>();
-                if (loadedAnimator != null)
-                {
-                    loadedAnimator.runtimeAnimatorController = animatorController;
-                    Debug.Log("RuntimeAvatarLoadChecker: animator is assigned to MyAvatar.");
+    // void Update(){
+    //     if (IsAvatarLoaded){
+    //         if(!IsComponentAssigned){
+    //             loadedAnimator = loadedAvatar.GetComponent<Animator>();
+    //             if (loadedAnimator != null)
+    //             {
+    //                 loadedAnimator.runtimeAnimatorController = animatorController;
+    //                 Debug.Log("RuntimeAvatarLoadChecker: animator is assigned to MyAvatar.");
 
-                    var allConstraints = Resources.FindObjectsOfTypeAll<RetargetingAnimationConstraint>();
-                    foreach (var constraint in allConstraints)
-                    {
-                        if (constraint.gameObject.name == "RetargetingConstraint")
-                        {
-                            loadedRetargetingAnimationConstraint = constraint;
-                            break;
-                        }
-                    } 
-                    Debug.Log("RuntimeAvatarLoadChecker: retargeting animation constraint is assigned to MyAvatar.");
+    //                 var allConstraints = Resources.FindObjectsOfTypeAll<RetargetingAnimationConstraint>();
+    //                 foreach (var constraint in allConstraints)
+    //                 {
+    //                     if (constraint.gameObject.name == "RetargetingConstraint")
+    //                     {
+    //                         loadedRetargetingAnimationConstraint = constraint;
+    //                         break;
+    //                     }
+    //                 } 
+    //                 Debug.Log("RuntimeAvatarLoadChecker: retargeting animation constraint is assigned to MyAvatar.");
 
-                    IsComponentAssigned = true;
-                }
-                else{
-                    Debug.LogWarning("MyAvatar doesn't have animator component.");
-                }
-            }
-        }
-    }
+    //                 IsComponentAssigned = true;
+    //             }
+    //             else{
+    //                 Debug.LogWarning("MyAvatar doesn't have animator component.");
+    //             }
+    //         }
+    //     }
+    // }
 
     private void OnAvatarLoaded(GameObject loadedAvatar)
     {

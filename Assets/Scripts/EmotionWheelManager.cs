@@ -50,7 +50,6 @@ public class EmotionWheelManager : MonoBehaviour
     private Animator animator;
     private PlayableGraph playableGraph;
 
-
     void Start(){
         foreach (var buttonInfo in buttonInfos)
         {
@@ -95,12 +94,12 @@ public class EmotionWheelManager : MonoBehaviour
         }
 
         // TEST CODE 
-        // StartCoroutine(CallTuronOnButtonAfterDelay(10f));
-        // StartCoroutine(CallTuronOffButtonAfterDelay(20f));
+        // StartCoroutine(CallTuronOnButtonAfterDelay(5f));
+        // StartCoroutine(CallTuronOffButtonAfterDelay(10f));
     }
 
     // TEST CODE 
-    /* 
+    
     IEnumerator CallTuronOnButtonAfterDelay(float delay)
     {
         float elapsedTime = 0f;
@@ -147,7 +146,7 @@ public class EmotionWheelManager : MonoBehaviour
         ResetAllEmotions();
         EmotionToTracking(tempKey);
     }
-    */
+    
 
     void ToggleEmotionState(string key)
     {
@@ -261,7 +260,8 @@ public class EmotionWheelManager : MonoBehaviour
         var animationPlayable = AnimationClipPlayable.Create(playableGraph, newClip);
 
         playableOutput.SetSourcePlayable(animationPlayable);
-        avatarBoneMirror.enabled = false;
+        avatarBoneMirror.AnimatedMirroredBonePairs();
+
         playableGraph.Play();
     }
 
@@ -335,6 +335,6 @@ public class EmotionWheelManager : MonoBehaviour
     void EmotionToTracking(string key){
         Debug.Log($"EmotionToTracking: CASE #3: Turn off {key}'s animation.");
         playableGraph.Destroy();
-        avatarBoneMirror.enabled = true;
+        avatarBoneMirror.SetMirroredBonePair();
     }
 }
