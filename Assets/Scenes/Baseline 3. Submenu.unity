@@ -277,11 +277,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcf33828b460c3d459fab71b851092cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  invokeAction: 1
+  invokeAction: 3
   onMenuRelease: 0
   disableOnInteract: 0
-  enableMenuSetting: 1
-  keyboardInput: 1
+  enableMenuSetting: 0
+  keyboardInput: 0
   mouseInteractButton: 0
   keyboardEnableKey: 1
   controllerInput: 0
@@ -6835,7 +6835,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radialMenu: {fileID: 1538799764}
-  subMenu: {fileID: 0}
+  subMenu: {fileID: 3035430845124445079}
   leftFingerTip: {fileID: 1872537907}
   leftFingerBase: {fileID: 2121590086}
   rightFingerTip: {fileID: 2109402390}
@@ -7779,7 +7779,7 @@ Transform:
   m_GameObject: {fileID: 1529494727}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.000001847744, y: 2.133, z: 0.9783514}
+  m_LocalPosition: {x: 0.000001847744, y: 0.8687137, z: 0.9783514}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7883,7 +7883,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 500, y: 500, z: 0.001}
+  m_Size: {x: 840, y: 840, z: 0.001}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1538799764
 MonoBehaviour:
@@ -13729,7 +13729,7 @@ MonoBehaviour:
   followOrbitalRotation: 1
   smartSequencing: 0
   disableOnInteract: 0
-  invokeAction: 1
+  invokeAction: 3
   submenuSiblingIndex: 0
   normalSprite: {fileID: 21300000, guid: 5fd0c57811fc8b64693aa27a34963aed, type: 3}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
