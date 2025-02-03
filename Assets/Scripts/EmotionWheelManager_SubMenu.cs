@@ -81,7 +81,7 @@ public class EmotionWheelManager_SubMenu : MonoBehaviour
     void Update(){
         Debug.Log($"Current Emotion: {currentEmotion}, Intensity: {currentIntensity}");
         for (int i=0; i<Emotions.Length; i++){
-            if(currentEmotion == Emotions[i].name) 
+            if(currentEmotion == Emotions[i].name && currentIntensity != null) 
             {
                 Emotions[i].buttonInfo.Selected = true;
 
@@ -147,6 +147,7 @@ public class EmotionWheelManager_SubMenu : MonoBehaviour
             Text buttonText = buttonTransform.GetComponentInChildren<Text>();
             if(buttonText.text == currentIntensity) 
             {
+                Destroy(currentIntensityButton);
                 currentIntensityButton = Instantiate(buttonTransform.gameObject, menuCanvas.transform);
                 currentIntensityButtonTransform = currentIntensityButton.transform;
                 currentIntensityButtonTransform.position = buttonTransform.position;
