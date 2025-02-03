@@ -28,14 +28,10 @@ public class EmotionWheelManager_SubMenu : MonoBehaviour
     }
 
     [Header("Radial Menus")]
+    public GameObject menuCanvas;
     public string radialMenuName = "EmotionWheel";
     UltimateRadialMenu radialMenu;
     UltimateRadialSubmenu subMenu;
-
-    public GameObject subButtonA;
-    public GameObject subButtonB;
-    public GameObject subButtonC;
-    
 
     [Header("Emotion Lists")]
     public Emotion[] Emotions;
@@ -54,6 +50,9 @@ public class EmotionWheelManager_SubMenu : MonoBehaviour
 
     private string currentEmotion;
     private string currentIntensity;
+    
+    private GameObject currentIntensityButton;
+    private Transform currentIntensityButtonTransform;
 
     void Start(){
         // Store the radial and sub menus.
@@ -61,14 +60,16 @@ public class EmotionWheelManager_SubMenu : MonoBehaviour
         subMenu = UltimateRadialSubmenu.ReturnComponent( radialMenuName );
 
         // Loop through all the emotion types assigned...
-        for( int i = 0; i < Emotions.Length; i++ ){
+        for(int i = 0; i < Emotions.Length; i++){
             // Debug.Log($"Hyuna: {Emotions[i].name} is registered.");
             
-            // Store the button id for reference and register the object to the radial menu.
+            // Store the button id & other infos for the radial menu.
+            Emotions[i].buttonInfo.id = i;
+            
             string[] colorList;
             emotionColors.TryGetValue(Emotions[i].name, out colorList);
             Emotions[i].colorCode = colorList[1];
-            Emotions[i].buttonInfo.id = i;
+
             Emotions[i].buttonInfo.name = Emotions[i].name;
             Emotions[i].buttonInfo.key = Emotions[i].name;
             radialMenu.RegisterButton(UpdateEmotionType, Emotions[i].buttonInfo);
@@ -92,6 +93,8 @@ public class EmotionWheelManager_SubMenu : MonoBehaviour
             }
             else Emotions[i].buttonInfo.Selected = false;
         }
+
+        if(currentIntensityButton != null) currentIntensityButton.SetActive(true);
     }
 
     public void UpdateEmotionType(int id){
@@ -101,6 +104,9 @@ public class EmotionWheelManager_SubMenu : MonoBehaviour
         Emotions[id].buttonInfo.SelectButton(true);
         currentEmotion = Emotions[id].name;
         currentIntensity = null;
+        Destroy(currentIntensityButton);
+        currentIntensityButton = null;
+        currentIntensityButtonTransform = null;
 
          // Clear the sub menu.
         subMenu.ClearMenu();
@@ -125,14 +131,28 @@ public class EmotionWheelManager_SubMenu : MonoBehaviour
         }
         
         SetSubButtonColor();
-        
+
         subMenu.Enable();
     }
 
     public void UpdateIntensity(int id){
         currentIntensity = Intensities[id].name;
+
         UpdateAnimation(id);
+
         Intensities[id].subButtonInfo.SelectButton(true);
+
+        foreach (Transform buttonTransform in subMenu.transform)
+        {
+            Text buttonText = buttonTransform.GetComponentInChildren<Text>();
+            if(buttonText.text == currentIntensity) 
+            {
+                currentIntensityButton = Instantiate(buttonTransform.gameObject, menuCanvas.transform);
+                currentIntensityButtonTransform = currentIntensityButton.transform;
+                currentIntensityButtonTransform.position = buttonTransform.position;
+                currentIntensityButtonTransform.rotation = buttonTransform.rotation;
+            }
+        }
     }
 
     public void UpdateAnimation(int id){
