@@ -37,15 +37,15 @@ public class EmotionWheelManager_SubMenu : MonoBehaviour
     public Emotion[] Emotions;
     public Intensity[] Intensities;
 
-    private Dictionary<string, string[]> emotionColors = new Dictionary<string, string[]>()
+    private readonly Dictionary<string, string[]> emotionColors = new Dictionary<string, string[]>()
     {
-        { "Anger", new string[] {"#F9ADB8", "#DE8792", "#AA6770"}},      
-        { "Disgust", new string[] {"#A9E4D8", "#42CDAE", "#30957E"}},    
-        { "Joy", new string[] {"#F1CC9F", "#F6B052", "#BE8840"}},        
-        { "Fear", new string[] {"#B6B6E8", "#8685CE", "#5F5F92"}},       
-        { "Sad", new string[] {"#8BD9E7", "#3BB1CB", "#2C8396"}},        
-        { "Surprise", new string[] {"#F1B9A9", "#ED8E73", "#B36B57"}},   
-        { "Neutral", new string[] {"#AEAEAE", "#7F7F7F", "#525252"}}     
+        { "Anger", new[] {"#F9ADB8", "#DE8792", "#AA6770"}},      
+        { "Disgust", new[] {"#A9E4D8", "#42CDAE", "#30957E"}},    
+        { "Joy", new[] {"#F1CC9F", "#F6B052", "#BE8840"}},        
+        { "Fear", new[] {"#B6B6E8", "#8685CE", "#5F5F92"}},       
+        { "Sad", new[] {"#8BD9E7", "#3BB1CB", "#2C8396"}},        
+        { "Surprise", new[] {"#F1B9A9", "#ED8E73", "#B36B57"}},   
+        { "Neutral", new[] {"#AEAEAE", "#7F7F7F", "#525252"}}     
     };
 
     private string currentEmotion;
@@ -54,48 +54,37 @@ public class EmotionWheelManager_SubMenu : MonoBehaviour
     private GameObject currentIntensityButton;
     private Transform currentIntensityButtonTransform;
 
-    void Start(){
+    void Start()
+    {
         // Store the radial and sub menus.
-        radialMenu = UltimateRadialMenu.ReturnComponent( radialMenuName );
-        subMenu = UltimateRadialSubmenu.ReturnComponent( radialMenuName );
+        radialMenu = UltimateRadialMenu.ReturnComponent(radialMenuName);
+        subMenu = UltimateRadialSubmenu.ReturnComponent(radialMenuName);
 
-        // Loop through all the emotion types assigned...
-        for(int i = 0; i < Emotions.Length; i++){
-            // Debug.Log($"Hyuna: {Emotions[i].name} is registered.");
-            
-            // Store the button id & other infos for the radial menu.
-            Emotions[i].buttonInfo.id = i;
-            
-            string[] colorList;
-            emotionColors.TryGetValue(Emotions[i].name, out colorList);
-            Emotions[i].colorCode = colorList[1];
-
-            Emotions[i].buttonInfo.name = Emotions[i].name;
-            Emotions[i].buttonInfo.key = Emotions[i].name;
-            radialMenu.RegisterButton(UpdateEmotionType, Emotions[i].buttonInfo);
-        }
-
+        RegisterEmotionButtons();
         SetRadialButtonColor();
     }
 
-    void Update(){
+    void Update()
+    {
         Debug.Log($"Current Emotion: {currentEmotion}, Intensity: {currentIntensity}");
-        for (int i=0; i<Emotions.Length; i++){
-            if(currentEmotion == Emotions[i].name && currentIntensity != null) 
-            {
-                Emotions[i].buttonInfo.Selected = true;
+        UpdateButtonSelection();
+    }
 
-                for (int j=0; j<Intensities.Length; j++)
-                {
-                    if(currentIntensity == Intensities[j].name) Intensities[j].subButtonInfo.Selected = true;
-                    else Intensities[j].subButtonInfo.Selected = false;
-                }
-            }
-            else Emotions[i].buttonInfo.Selected = false;
+    // Update the button activation state. Called in Update(). 
+    private void UpdateButtonSelection()
+    {
+        foreach (var emotion in Emotions)
+        {
+            emotion.buttonInfo.Selected = emotion.name == currentEmotion;
+        }
+
+        foreach (var intensity in Intensities)
+        {
+            intensity.subButtonInfo.Selected = intensity.name == currentIntensity;
         }
 
         if(currentIntensityButton != null) currentIntensityButton.SetActive(true);
-    }
+    } 
 
     public void UpdateEmotionType(int id){
         Debug.Log($"Hyuna: {Emotions[id].name} is clicked.");
@@ -142,6 +131,7 @@ public class EmotionWheelManager_SubMenu : MonoBehaviour
 
         Intensities[id].subButtonInfo.SelectButton(true);
 
+        // Clone sub menu button.
         foreach (Transform buttonTransform in subMenu.transform)
         {
             Text buttonText = buttonTransform.GetComponentInChildren<Text>();
@@ -160,7 +150,30 @@ public class EmotionWheelManager_SubMenu : MonoBehaviour
         
     }
 
-    void SetRadialButtonColor()
+
+    // DEFAULT SETTING METHODS
+
+    // Register the radial button with the input information. Called in Start().
+    private void RegisterEmotionButtons()
+    {
+        for (int i=0; i<Emotions.Length; i++)
+        {
+            var emotion = Emotions[i];
+            emotion.buttonInfo.id = i;
+
+            if (emotionColors.TryGetValue(emotion.name, out string[] colorList))
+            {
+                emotion.colorCode = colorList[1];
+            }
+
+            emotion.buttonInfo.name = emotion.name;
+            emotion.buttonInfo.key = emotion.name;
+            radialMenu.RegisterButton(UpdateEmotionType, emotion.buttonInfo);
+        }
+    }
+
+    // Set the color of radial button. Called in Start().
+    private void SetRadialButtonColor()
     {
         foreach (Transform buttonTransform in radialMenu.transform)
         {
@@ -191,6 +204,7 @@ public class EmotionWheelManager_SubMenu : MonoBehaviour
         }
     }
 
+    // Set the color of "sub" menu button. Called in UpdateEmotionType().
     void SetSubButtonColor()
     {
         string[] colorList;
